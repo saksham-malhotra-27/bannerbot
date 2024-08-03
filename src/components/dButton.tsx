@@ -18,6 +18,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
       alert("Element not found");
       return;
     }
+    window.alert('Downloading... wait for few seconds')
 
     html2canvas(element, { scale: window.devicePixelRatio, useCORS: true, logging:true }) // Use device pixel ratio for higher resolution
       .then(canvas => {
