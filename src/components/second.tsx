@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface ImageOption {
   id: string;
@@ -28,6 +28,14 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({ isOpen, onC
   const [form, setForm] = useState<Banner>(banner);
   const [selectedBackground, setSelectedBackground] = useState<string>(banner.background);
   const [selectedImage, setSelectedImage] = useState<string>(banner.image);
+
+  useEffect(() => {
+    setForm((prev) => ({ ...prev, background: selectedBackground }));
+  }, [selectedBackground]);
+
+  useEffect(() => {
+    setForm((prev) => ({ ...prev, image: selectedImage }));
+  }, [selectedImage]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
